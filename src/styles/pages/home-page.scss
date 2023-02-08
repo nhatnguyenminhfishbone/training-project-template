@@ -1,2 +1,93 @@
 // Home page styles
 @import "master-page";
+
+$color-solid: solid #ddd;
+$border-size: 1px;
+$backgroud-head-color: rgb(233, 233, 233);
+$none: 0;
+$margin-table-bottom: .85em;
+$padding-tr: .35em;
+$padding-td: .625em;
+$letter-spacing-th: .1em;
+$font-size-td: .8em;
+
+@mixin img-flex {
+    height: auto;
+    padding: auto;
+}
+
+table {
+    border: $border-size $color-solid;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    tr {
+        border: $border-size $color-solid;
+        padding: $padding-tr;
+    }
+
+    th,
+    td {
+        padding: $padding-td;
+        text-align: left;
+    }
+
+    table th {
+        font-size: $margin-table-bottom;
+        letter-spacing: $letter-spacing-th;
+    }
+
+}
+
+
+
+img {
+    width: 12%;
+    @include img-flex;
+}
+  
+@media screen and (max-width: 600px) {
+    table {
+      border: $none;
+        thead {
+            border: none;
+            height: $border-size;
+            overflow: hidden;
+            padding: $none;
+            position: absolute;
+            width: $border-size;
+        }
+
+        tr {
+            border-bottom: $none;
+            display: block;
+            margin-bottom: $margin-table-bottom;
+        }
+
+        td {
+            border-bottom: $border-size $color-solid;
+            display: block;
+            font-size: $font-size-td;
+            text-align: right;
+        }
+
+        td::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+        }
+        
+        td:last-child {
+            border-bottom: $none;
+        }
+
+        td:first-child {
+            background-color: $backgroud-head-color;    
+        }
+    }
+  
+    img {
+        width: 7%;
+        @include img-flex;
+    }
+}
