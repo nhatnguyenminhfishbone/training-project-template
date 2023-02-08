@@ -7,7 +7,6 @@ $backgroud-head-color: rgb(233, 233, 233);
 $none: 0;
 $margin-table-bottom: .85em;
 $padding-tr: .35em;
-$padding-td: .625em;
 $letter-spacing-th: .1em;
 $font-size-td: .8em;
 
@@ -28,8 +27,8 @@ table {
 
     th,
     td {
-        padding: $padding-td;
         text-align: left;
+        font-weight: normal;
     }
 
     table th {
@@ -82,7 +81,7 @@ img {
         }
 
         td:first-child {
-            background-color: $backgroud-head-color;    
+            background-color: $backgroud-head-color;
         }
     }
   
