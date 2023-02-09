@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
@@ -7,7 +8,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="./dist/js/home-page.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<!-- Bootstrap JavaScript -->
 	</head>
 	<body>
 		<div>
@@ -20,42 +20,10 @@
 						<div class="navbar-nav">
 							<a href="#" class="nav-item nav-link active" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><img src="./src/styles/icon/new.png" class="img-fluid" alt="Responsive image"> New <img class="arrow" src="./src/styles/icon/arrow.png" class="img-fluid" alt="Responsive image"></a>
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal">File</a></li>
-								<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog" role="document">
-									  <div class="modal-content">
-										<div class="modal-header">
-										  <h5 class="modal-title" id="exampleModalLabel">Form</h5>
-										  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										  </button>
-										</div>
-										<div class="modal-body">
-										  <form>
-											<div class="form-group">
-											  <label for="name">Name</label>
-											  <input type="text" class="form-control" id="name">
-											</div>
-											<div class="form-group">
-											  <label for="modified">Modified</label>
-											  <input type="text" class="form-control" id="modified">
-											</div>
-											<div class="form-group">
-											  <label for="modifiedBy">Modified By</label>
-											  <input type="text" class="form-control" id="modifiedBy">
-											</div>
-										  </form>
-										</div>
-										<div class="modal-footer">
-										  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										  <button type="button" class="btn btn-primary">Save changes</button>
-										</div>
-									  </div>
-									</div>
-								  </div>
+								<li><a class="dropdown-item" href="#" data-toggle="modal" data-target="#exampleModal" id="createFormBtn">File</a></li>
 								<li><a class="dropdown-item" href="#">Folder</a></li>
 							</ul>
-							<a href="#" class="nav-item nav-link active"><img src="./src/styles/icon/upload.png" class="img-fluid" alt="Responsive image"> Upload <img class="arrow" src="./src/styles/icon/arrow.png" class="img-fluid" alt="Responsive image"></a>
+							<a href="#" class="nav-item nav-link active" id="uploadFormBtn"><img src="./src/styles/icon/upload.png" class="img-fluid" alt="Responsive image"> Upload <img class="arrow" src="./src/styles/icon/arrow.png" class="img-fluid" alt="Responsive image"></a>
 							<a href="#" class="nav-item nav-link active"><img src="./src/styles/icon/sync.png" class="img-fluid" alt="Responsive image">Sync </a>
 							<a href="#" class="nav-item nav-link active"><img src="./src/styles/icon/icon-excel.png" class="img-fluid" alt="Responsive image"> Export to Excel</a>
 							<a href="#" class="nav-item nav-link active"><img src="./src/styles/icon/flow.png" class="img-fluid" alt="Responsive image"> Flow <img class="arrow" src="./src/styles/icon/arrow.png" class="img-fluid" alt="Responsive image"><span class="sr-only"></a>
@@ -65,19 +33,63 @@
 				</div>
 			</nav>
 		</div>
+		<form id="formCreateFolder">
+			<div class="inputForm">
+				<div class="inputForm-title">
+					Create a file
+				</div>
+				<div class="inputForm-body">
+					<input required id="createFormInput" type="text" class=" fullWidthInput"
+						placeholder="Please enter the file name">
+				</div>
+				<div class="inputForm-button">
+					<input id="createFormButton" type="submit" value="Create" class="createButton">
+				</div>
+			</div>
+		</form>
+		<form id="formUploadFolder">
+			<div class="uploadForm">
+				<div class="uploadForm-title">
+					Upload a file
+				</div>
+				<div class="uploadForm-body">
+					<input required multiple id="uploadFormInput" type="file" class=" fullWidthInput"
+						placeholder="Please enter the file name">
+				</div>
+				<div class="uploadForm-button">
+					<input id="uploadFormButton" type="submit" value="Upload" class="uploadButton">
+				</div>
+			</div>
+		</form>
+		<form id="formUpdateFolder">
+			<div class="updateForm">
+				<div class="updateForm-title">
+					Enter new file name
+				</div>
+				<div class="updateForm-body">
+					<input required id="updateFormInput" type="text" class=" fullWidthInput">
+				</div>
+				<div class="updateForm-button">
+					<input id="updateFormButton" type="submit" value="Update" class=" updateButton">
+					<input id="deleteFormButton" type="submit" value="Delete" class=" deleteButton">
+				</div>
+			</div>
+		</form>
 		<h1>Documents</h1>
-		<table>
+		<table id="documentTable">
 			<thead>
 			  	<tr>
 					<th scope="col">File Type</th>
 					<th scope="col">Name</th>
 					<th scope="col">Modified</th>
 					<th scope="col">Modified By</th>
+					<th scope="col">Created</th>
+					<th scope="col">Created By</th>
 					<th scope="col">Add column</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr>
+			<tbody id="tbodyDataFileList">
+				<!-- <tr>
 					<td data-label="File Type"><img src="./src/styles/icon/icon-folder.png" class="img-fluid" alt="Responsive image"></td>
 					<td data-label="Name">CAS</td>
 					<td data-label="Modified">April 30</td>
@@ -111,12 +123,9 @@
 					<td data-label="Modified">A few seconds ago</td>
 					<td data-label="Modified By">Administrator MOD</td>
 					<td data-label="Add column"></td>
-				</tr>
+				</tr> -->
 			</tbody>
 		</table>
 	</body>
 </html>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 

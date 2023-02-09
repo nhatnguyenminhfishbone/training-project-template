@@ -21,7 +21,6 @@
     "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.7",
     "@types/lodash": "^4.14.149",
-    "@typescript-eslint/parser": "^3.7.1",
     "autoprefixer": "^9.7.3",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
@@ -79,6 +78,8 @@
     "keen-slider": "^5.0.5",
     "lit-html": "^1.2.1",
     "popper.js": "^1.16.1",
-    "webpack-fix-style-only-entries": "^0.5.0"
+    "webpack-fix-style-only-entries": "^0.5.0",
+    "uuid": "^8.3.2",
+    "axios": "^0.26.1"
   }
 }

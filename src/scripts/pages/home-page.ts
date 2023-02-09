@@ -1,8 +1,26 @@
 import ready from '../utilities/_helper';
 import renderGrid from '../components/_grid';
+import {
+  showCreateForm,
+  createFile,
+} from '../components/_form';
+import { showUpdateForm, updateFile, deleteFile } from '../components/_form';
+import { showUploadForm, uploadFile } from '../components/_form';
+
+import { FileAndFolderList } from '../model/FileAndFolderList';
 
 ready(() => {
   renderGrid();
+  
+  const z = new FileAndFolderList();
+  z.showListForTable();
+  showCreateForm();
+  createFile(z);
+  showUpdateForm();
+  updateFile(z);
+  deleteFile(z);
+  showUploadForm();
+  uploadFile(z);
 });
 
 // interface File {
