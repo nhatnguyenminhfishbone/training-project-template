@@ -10,7 +10,7 @@ export function showCreateForm() {
     if (createBtn) {
         createBtn.addEventListener("click", function (e) {
             e.preventDefault()
-            document.getElementById('formCreateFolder')!.style.display = 'block';
+            document.getElementById('formCreateFile')!.style.display = 'block';
         }, true)
     }
 }
@@ -26,7 +26,7 @@ export function createFile(a: FileAndFolderList) {
                 console.log(uploadFileName);
                 const newFile = new Folder(uuidv4() as string, uploadFileName.value, '', dateTime, "Admin", dateTime, "Admin")
                 a.upload(newFile)
-                document.getElementById('formCreateFolder')!.style.display = 'none';
+                document.getElementById('formCreateFile')!.style.display = 'none';
             }
         }, true)
     }
@@ -38,7 +38,7 @@ export function showUploadForm() {
     if (uploadBtn) {
         uploadBtn.addEventListener("click", function (e) {
             e.preventDefault()
-            document.getElementById('formUploadFolder')!.style.display = 'block';
+            document.getElementById('formUploadFile')!.style.display = 'block';
         }, true)
     }
 }
@@ -60,7 +60,7 @@ export function uploadFile(a: FileAndFolderList) {
                     const element = uploadFileName[index];
                     const newFile = new File(uuidv4() as string, element.name, getFileExtension(element.name), dateTime, "Admin", dateTime, "Admin")
                     a.upload(newFile)
-                    document.getElementById('formUploadFolder')!.style.display = 'none';
+                    document.getElementById('formUploadFile')!.style.display = 'none';
                 }
             }
         }, true)
@@ -74,7 +74,7 @@ export function showUpdateForm() {
         let updateBtn = document.getElementById(`editFileBtn-${index}`);
         updateBtn!.addEventListener("click", () => {
             idRow = item.FileId
-            document.getElementById('formUpdateFolder')!.style.display = 'block';
+            document.getElementById('formUpdateFile')!.style.display = 'block';
             let tmp = item.name.split(".");
             (document.getElementById('updateFormInput') as HTMLInputElement).value = tmp[0]
         });
@@ -91,7 +91,7 @@ export function updateFile(a: FileAndFolderList) {
             if (input && idRow)
                 a.edit(idRow, (input as HTMLInputElement).value)
             window.location.reload();
-            document.getElementById('formUpdateFolder')!.style.display = 'none';
+            document.getElementById('formUpdateFile')!.style.display = 'none';
         }, true)
     }
 }
@@ -104,7 +104,7 @@ export function deleteFile(a: FileAndFolderList) {
             if (idRow)
                 a.delete(idRow)
             window.location.reload();
-            document.getElementById('formUpdateFolder')!.style.display = 'none';
+            document.getElementById('formUpdateFile')!.style.display = 'none';
         }, true)
     }
 }

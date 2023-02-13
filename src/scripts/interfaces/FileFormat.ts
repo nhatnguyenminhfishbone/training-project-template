@@ -1,4 +1,4 @@
-export interface FileFormatter {
+export interface FileFormat {
   FileId: string;
   name: string;
   extension: string;

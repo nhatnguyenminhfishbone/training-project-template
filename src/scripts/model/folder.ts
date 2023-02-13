@@ -1,6 +1,6 @@
-import { FileFormatter } from '../interfaces/FileFormat';
+import { FileFormat } from '../interfaces/FileFormat';
 
-export class Folder implements FileFormatter {
+export class Folder implements FileFormat {
   FileId: string;
 
   name: string;

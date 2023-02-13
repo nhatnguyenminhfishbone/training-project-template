@@ -1,36 +1,27 @@
 import { showUpdateForm } from "../components/_form";
-import { FileFormatter } from "../interfaces/FileFormat";
-const axios = require('axios');
+import { FileFormat } from "../interfaces/FileFormat";
+// const axios = require('axios');
 
-
-enum iconForFileType {
-    xlsx = 'file-excel',
-    jpeg = 'file-image',
-    folder = 'folder',
-    file = 'file',
-    pdf = 'file-pdf',
-    doc = 'file-word',
-};
 
 export class FileAndFolderList {
-    data!: Array<FileFormatter>;
+    data!: Array<FileFormat>;
     constructor() {
         this.data = this.setData()
     }
-    private setData(): Array<FileFormatter> {
+    private setData(): Array<FileFormat> {
         let dataInStorage = localStorage.getItem('fileListData')
-        axios.get('https://localhost:44331/api/Files')
-            .then(function (response: any) {
-                // handle success
-                console.log(response);
-            })
-            .catch(function (error: any) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
+        // axios.get('https://localhost:44331/api/Files')
+        //     .then(function (response: any) {
+        //         // handle success
+        //         console.log(response);
+        //     })
+        //     .catch(function (error: any) {
+        //         // handle error
+        //         console.log(error);
+        //     })
+        //     .then(function () {
+        //         // always executed
+        //     });
         if (dataInStorage) {
             return JSON.parse(dataInStorage)
         }
@@ -42,16 +33,9 @@ export class FileAndFolderList {
         let _tr = ''
         let index = 0;
         this.data.forEach(element => {
-            let icon
-            if (element.extension === 'xlsx') icon = iconForFileType.xlsx
-            else if (element.extension === 'doc' || element.extension === 'docx') icon = iconForFileType.doc
-            else if (element.extension === 'jpg' || element.extension === 'jpeg' || element.extension === 'png') icon = iconForFileType.jpeg
-            else if (element.extension === 'pdf') icon = iconForFileType.pdf
-            else if (element.extension === '') icon = iconForFileType.folder
-            else icon = iconForFileType.file
             _tr += `
             <tr id="${element.FileId}">
-                <td data-label="File Type"><i class="fa-solid fa-${icon}"></i></td>
+                <td data-label="File Type"><i class="fa-solid"></i></td>
                 <td data-label="Name" class="row-data"><span class="new-item"><i
                 class="fa-brands fa-yelp"></i></span> ${element.name} </td>
                 <td data-label="Modified At" class="row-data td-second">${element.modifiedAt}</td>
@@ -68,18 +52,18 @@ export class FileAndFolderList {
         setTimeout(showUpdateForm, 1)
     }
 
-    public upload(file: FileFormatter): void {
+    public upload(file: FileFormat): void {
         this.data.push(file);
         console.log(file);
 
         localStorage.setItem("fileListData", JSON.stringify(this.data))
-        axios.post('https://localhost:44331/api/Files', file)
-            .then(function (response: any) {
-                console.log(response);
-            })
-            .catch(function (error: any) {
-                console.log(error);
-            });
+        // axios.post('https://localhost:44331/api/Files', file)
+        //     .then(function (response: any) {
+        //         console.log(response);
+        //     })
+        //     .catch(function (error: any) {
+        //         console.log(error);
+        //     });
 
         this.showListForTable();
     }
